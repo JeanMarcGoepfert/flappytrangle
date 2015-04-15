@@ -11,9 +11,9 @@ gulp.task('compile', function() {
 gulp.task('test', function() {
   gulp.src('./spec/app.spec.js')
     .pipe(jasmine());
-});
+})
 
-gulp.task('watch', ['compile'], function() {
+gulp.task('watch', function() {
   gulp.watch('./src/app.js', ['compile', 'test']);
 });
 

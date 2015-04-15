@@ -12,34 +12,17 @@ var Triangle = (function () {
   function Triangle(a, b, c) {
     _classCallCheck(this, Triangle);
 
-    this.a = a;
-    this.b = b;
-    this.c = c;
+    this.sides = [a, b, c];
   }
 
   _createClass(Triangle, [{
     key: 'kind',
     value: function kind() {
-      if (this.invalid()) throw 'invalid triangle';
-      if (this.a === this.b && this.b === this.c) {
-        return 'equilateral';
-      }
-      if (this.a === this.b || this.b === this.c || this.c === this.a) {
-        return 'isosceles';
-      }
-      if (this.a !== this.b && this.b !== this.c && this.c !== this.a) {
-        return 'scalene';
-      }
-    }
-  }, {
-    key: 'invalid',
-    value: function invalid() {
-      return !(this.a + this.b > this.c && this.b + this.c > this.a && this.c + this.a > this.b);
-    }
-  }, {
-    key: 'equilateral',
-    value: function equilateral(sides) {
-      this.a === this.b;
+      var sides = this.sides.sort(function (a, b) {
+        return a - b;
+      });
+      if (sides[0] + sides[1] <= sides[2]) throw 'nope';
+      return ['equilateral', 'isosceles', 'scalene'][new Set(sides).size - 1];
     }
   }]);
 
